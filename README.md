@@ -42,12 +42,6 @@ Description du Projet :
      
  
   
- 
-Le Simulateur de Systèmes Planétaires _ 1er
- rapport 5 
- 
-Gérer les systèmes planétaires : 
-Au démarrage du programme, l'utilisat
 
 Arborescence des dossiers : 
 --------------
