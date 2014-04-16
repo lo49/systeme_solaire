@@ -1,9 +1,5 @@
 ﻿/// <summary>
 /// Astre.cs
-/// MODELE
-/// créé par nicolas le 26/03
-/// modifié par jonathan le 31/03
-/// modifié par ...
 /// </summary>
 
 using UnityEngine;
@@ -11,15 +7,15 @@ using System.Collections;
 
 public class Astre
 {
-	public string nom;
-	public Systeme systeme;
-	public Vector3 position;
-	public Vector3 vitesseInit;
-	public float masse;
-	public float taille;
-	public GameObject gameobject; // gameObject qui représente la planète (une sphère) dans la vue 3d
-	public GameObject astreEchelle;
-	public AstreController ac;
+	protected string nom;
+	protected Systeme systeme;
+	protected Vector3 position;
+	protected Vector3 vitesseInit;
+	protected float masse;
+	protected float taille;
+	protected GameObject gameobject; // gameObject qui représente la planète (une sphère) dans la vue 3d
+	protected GameObject astreEchelle;
+	protected AstreController ac;
 
 
 	public Astre(string n, Systeme s, Vector3 pos, Vector3 v, float m, float t)
@@ -57,6 +53,70 @@ public class Astre
 		ac.astre = this;
 	}
 	
+	public string getName(){
+		return name;
+	}
+
+	public void setName(string p){
+		getName() = p;
+	}	
+
+	public Systeme getSysteme(){
+		return systeme;
+	}
+
+	public void setSysteme(Systeme p){
+		getSysteme() = p;
+	}
+
+	public Vector3 getPosition(){
+		return position;
+	}
+	public void setPosition(Vector3 p){
+		getPosition() = p;
+	}
+
+	public Vector3 getVitesseInit(){
+		return vitesseInit;
+	}
+	public void setVitesseInit(Vector3 p){
+		getVitesseInit() = p;
+	}
+	public float getMasse(){
+		return masse;
+	}
+	public void setMasse(float p){
+		getMasse() = p;
+	}
+
+	public float getTaille(){
+		return taille;
+	}
+	public void setTaille(float p){
+		getTaille() = p;
+	}
+
+	public GameObject getGameObject(){
+		return gameobject; 
+	
+	}
+
+	public void setGameObject(GameObject p){
+		getGameObject() = p;
+	}
+	public GameObject getAstreEchelle(){
+		return astreEchelle;
+	}
+	public void setAstreEchelle(GameObject p){
+		getAstreEchelle() = p;
+	}
+	public AstreController getAc(){
+		return ac;
+	}
+	public void setAc(AstreController p){
+		getAc() = p;
+	}
+
 
 }
 		
