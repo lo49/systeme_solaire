@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 public class Systeme
 {
+//	private GameObject camera = new GameObject();
 	private string nom;
 	public GameObject gameobject; // gameObject vide qui ne sert qu'a appeler 'SystemeControler'
 	public List<Astre> astres;
@@ -25,6 +26,8 @@ public class Systeme
 		gameobject.AddComponent ("SystemeControler"); // on ajoute le script 'SystemeControler' à notre attribut / objet vide
 		sc = (SystemeControler)gameobject.GetComponent ("SystemeControler"); // on récupère ce 'SystemeControler' et on le met dans l'attribut sc
 		sc.systeme = this; // On lie 'SystemeControler' à 'Systeme' par attribut
+//		camera.AddComponent<Camera> ();
+//		camera.AddComponent<CameraController> ();
 	}
 
 	public void addAstre(Astre a)
