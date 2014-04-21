@@ -36,7 +36,7 @@ public class Astre
 		gameobject = GameObject.CreatePrimitive (PrimitiveType.Sphere);
 		gameobject.transform.position = position;
 		gameobject.transform.localScale = new Vector3(taille,taille,taille);
-		gameobject.AddComponent("Rigidbody");
+		gameobject.AddComponent<Rigidbody>();
 		gameobject.rigidbody.useGravity = false;
 		gameobject.rigidbody.velocity = vitesseInit;
 		gameobject.rigidbody.mass = masse;
@@ -48,8 +48,8 @@ public class Astre
 	{
 		astreEchelle = GameObject.CreatePrimitive (PrimitiveType.Sphere);
 		astreEchelle.collider.enabled = false;
-		astreEchelle.AddComponent ("AstreController"); 
-		ac = (AstreController)astreEchelle.GetComponent ("AstreController");
+		astreEchelle.AddComponent<AstreController>(); 
+		ac = (AstreController)astreEchelle.GetComponent<AstreController>();
 		ac.astre = this;
 	}
 	
