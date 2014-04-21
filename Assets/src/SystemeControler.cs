@@ -12,7 +12,6 @@ using System.Collections;
 public class SystemeControler : MonoBehaviour
 {
 	public Systeme systeme;
-
 	public void setSysteme(Systeme s)
 	{
 		systeme=s;
@@ -43,11 +42,11 @@ public class SystemeControler : MonoBehaviour
 			
 				foreach (Astre a in systeme.astres)
 				{
-					temp1 = a.gameobject;							// temp 1 permet de gagner du temps vu que le a est utilisé plusieurs fois.
+					temp1 = a.getGameObject();							// temp 1 permet de gagner du temps vu que le a est utilisé plusieurs fois. Or not..? Si ça se trouve non.
 					pos++; 
 					for(b=pos ; b<systeme.astres.Count ; b++)
 					{
-						temp2 = systeme.astres[b].gameobject;											// temp 2 : pareil que temp 1.
+						temp2 = systeme.astres[b].getGameObject();											// temp 2 : pareil que temp 1.
 						distance = temp1.transform.position - temp2.transform.position;		// calcul de la distance entre les deux astres.
 						force = 0.66742F*temp1.rigidbody.mass * temp2.rigidbody.mass * distance.normalized / distance.sqrMagnitude;
 						temp1.rigidbody.AddForce(-force);
@@ -68,7 +67,7 @@ public class SystemeControler : MonoBehaviour
 			Debug.Log ("Vitesse du temps : " + (Time.timeScale * 0.03802651F) + " mois/sec");
 		}
 		Debug.Log ("Jour numéro " + (Time.fixedTime*1.157407F));
-		Debug.Log ("Vitesse Soleil : " + systeme.astres [0].gameobject.rigidbody.velocity.magnitude + " km/s");
+		Debug.Log ("Vitesse Soleil : " + systeme.astres [0].getGameObject().rigidbody.velocity.magnitude + " km/s");
 	}
 
 
@@ -87,42 +86,42 @@ public class SystemeControler : MonoBehaviour
 		{
 			foreach (Astre a in systeme.astres)
 			{
-				a.ac.gererEchelle(1);
+				a.getAstreController().gererEchelle(1);
 			}
 		}
 		if (GUI.Button (new Rect (10, 160, 250, 50), "augmenter échelle distance"))
 		{
 			foreach (Astre a in systeme.astres)
 			{
-				a.ac.gererEchelle(2);
+				a.getAstreController().gererEchelle(2);
 			}
 		}
 		if (GUI.Button (new Rect (10, 210, 250, 50), "diminuer échelle distance"))
 		{
 			foreach (Astre a in systeme.astres)
 			{
-				a.ac.gererEchelle(3);
+				a.getAstreController().gererEchelle(3);
 			}
 		}
 		if (GUI.Button (new Rect (10, 260, 300, 50), "activer/désactiver échelle racine taille"))
 		{
 			foreach (Astre a in systeme.astres)
 			{
-				a.ac.gererEchelle(4);
+				a.getAstreController().gererEchelle(4);
 			}
 		}
 		if (GUI.Button (new Rect (10, 310, 250, 50), "augmenter échelle taille"))
 		{
 			foreach (Astre a in systeme.astres)
 			{
-				a.ac.gererEchelle(5);
+				a.getAstreController().gererEchelle(5);
 			}
 		}
 		if (GUI.Button (new Rect (10, 360, 250, 50), "diminuer échelle taille"))
 		{
 			foreach (Astre a in systeme.astres)
 			{
-				a.ac.gererEchelle(6);
+				a.getAstreController().gererEchelle(6);
 			}
 		}
 		 
