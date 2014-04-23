@@ -2,6 +2,8 @@
 /// Astre.cs
 /// </summary>
 
+
+
 using UnityEngine;
 using System.Collections;
 
@@ -16,6 +18,9 @@ public class Astre
 	protected GameObject gameobject; // gameObject qui représente la planète (une sphère) dans la vue 3d
 	protected GameObject astreEchelle;
 	protected AstreController ac;
+	protected string texture;
+	protected string categorie;
+	protected string description;
 
 
 	public Astre(string n, Systeme s, Vector3 pos, Vector3 v, float m, float t)
@@ -53,11 +58,11 @@ public class Astre
 		ac.astre = this;
 	}
 	
-	public string getName(){
+	public string getNom(){
 		return nom;
 	}
 
-	public void setName(string p){
+	public void setNom(string p){
 		nom = p;
 	}	
 
@@ -119,6 +124,17 @@ public class Astre
 	public void setAc(AstreController p){
 		ac = p;
 	}
+
+	public string getTexture(){
+		return texture;
+	}
+	public string getCategorie(){
+		return categorie;
+	}
+	public string getDescription(){
+		return description;
+	}
+
 
 
 }
