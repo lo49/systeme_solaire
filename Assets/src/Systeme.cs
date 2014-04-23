@@ -13,10 +13,15 @@ using System.Collections.Generic;
 public class Systeme
 {
 //	private GameObject camera = new GameObject();
-	private string nom;
-	public GameObject gameobject; // gameObject vide qui ne sert qu'a appeler 'SystemeControler'
-	public List<Astre> astres;
-	private SystemeControler sc; // script lié à cet objet Systeme
+	protected string nom;
+	protected GameObject gameobject; // gameObject vide qui ne sert qu'a appeler 'SystemeControler'
+	protected List<Astre> astres;
+	protected SystemeControler sc; // script lié à cet objet Systeme
+	protected string URLImage;
+	protected string description;
+	protected Etoile etoile;
+	protected List<Planete> planetes;
+	protected string fichierXML;
 
 	public Systeme(string n)
 	{
@@ -34,4 +39,30 @@ public class Systeme
 	{
 		astres.Add(a);
 	}
+
+	public string getNom(){
+		return nom;
+	}
+	public string getURLimage(){
+		return URLImage;
+	}
+	public string getDescription()
+	{
+		return description;
+	}
+	public Etoile getEtoile(){
+		return etoile;
+	}
+	public List<Planete> getListPlanetes(){
+		return planetes;
+	}
+	public string getFichierXML(){
+		return fichierXML;
+	}
+	public void setFichierXML(string nomfichier){
+		fichierXML = nomfichier;
+	}
+
+
 }
+
