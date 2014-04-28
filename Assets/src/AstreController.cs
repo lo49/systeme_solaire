@@ -13,18 +13,18 @@ public class AstreController : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-		Destroy (astre.astreEchelle.GetComponent ("SphereCollider"));
-		this.name = astre.nom + "Vue";
-		taille = astre.taille*multiplyTaille;
-		astre.astreEchelle.transform.localScale = new Vector3(taille,taille,taille);
+		Destroy (astre.getAstreEchelle().GetComponent ("SphereCollider"));
+		this.name = astre.getNom() + "Vue";
+		taille = astre.getTaille()*multiplyTaille;
+		astre.getAstreEchelle().transform.localScale = new Vector3(taille,taille,taille);
 	}
 
 	void LateUpdate() {
-		Vector3 posReelle = astre.gameobject.transform.position;
+		Vector3 posReelle = astre.getGameObject().transform.position;
 		if (racDistActive) {
-			astre.astreEchelle.transform.position = Mathf.Pow (posReelle.sqrMagnitude, 0.20f) * posReelle.normalized * multiplyDistance;
+			astre.getAstreEchelle().transform.position = Mathf.Pow (posReelle.sqrMagnitude, 0.20f) * posReelle.normalized * multiplyDistance;
 				} else {
-						astre.astreEchelle.transform.position = posReelle * multiplyDistance;
+						astre.getAstreEchelle().transform.position = posReelle * multiplyDistance;
 				}
 	}
 
@@ -78,11 +78,11 @@ public class AstreController : MonoBehaviour {
 	public void calculTaille()
 	{
 		if (racTaillActive) {
-						taille = Mathf.Sqrt (astre.taille) * multiplyTaille;
+						taille = Mathf.Sqrt (astre.getTaille()) * multiplyTaille;
 				} else {
-						taille = astre.taille * multiplyTaille;
+						taille = astre.getTaille() * multiplyTaille;
 				}
-		astre.astreEchelle.transform.localScale = new Vector3(taille,taille,taille);
+		astre.getAstreEchelle().transform.localScale = new Vector3(taille,taille,taille);
 	}
 
 }

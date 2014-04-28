@@ -53,12 +53,12 @@ public class Astre
 		ac.astre = this;
 	}
 	
-	public string getName(){
-		return name;
+	public string getNom(){
+		return nom;
 	}
 
-	public void setName(string p){
-		getName() = p;
+	public void setNom(string p){
+		nom = p;
 	}	
 
 	public Systeme getSysteme(){
@@ -66,55 +66,53 @@ public class Astre
 	}
 
 	public void setSysteme(Systeme p){
-		getSysteme() = p;
+		systeme = p;
 	}
 
 	public Vector3 getPosition(){
 		return position;
 	}
 	public void setPosition(Vector3 p){
-		getPosition() = p;
+		position = p;
 	}
 
 	public Vector3 getVitesseInit(){
 		return vitesseInit;
 	}
 	public void setVitesseInit(Vector3 p){
-		getVitesseInit() = p;
+		vitesseInit = p;
 	}
 	public float getMasse(){
 		return masse;
 	}
 	public void setMasse(float p){
-		getMasse() = p;
+		masse = p;
 	}
 
 	public float getTaille(){
 		return taille;
 	}
 	public void setTaille(float p){
-		getTaille() = p;
+		taille = p;
 	}
 
 	public GameObject getGameObject(){
 		return gameobject; 
-	
 	}
-
 	public void setGameObject(GameObject p){
-		getGameObject() = p;
+		gameobject = p;
 	}
 	public GameObject getAstreEchelle(){
 		return astreEchelle;
 	}
 	public void setAstreEchelle(GameObject p){
-		getAstreEchelle() = p;
+		astreEchelle = p;
 	}
 	public AstreController getAc(){
 		return ac;
 	}
 	public void setAc(AstreController p){
-		getAc() = p;
+		ac = p;
 	}
 
 
