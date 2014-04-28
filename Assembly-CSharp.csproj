@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{50607E3F-CABB-A5EC-F1F0-90E918D7D61C}</ProjectGuid>
+	<ProjectGuid>{A86474FB-85C6-10A6-2191-55EC3FBE06AC}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -49,9 +49,14 @@
      <Compile Include="Assets\src\Astre.cs" />
      <Compile Include="Assets\src\AstreController.cs" />
      <Compile Include="Assets\src\CameraController.cs" />
+     <Compile Include="Assets\src\Etoile.cs" />
+     <Compile Include="Assets\src\GetAstre.cs" />
      <Compile Include="Assets\src\Main.cs" />
+     <Compile Include="Assets\src\Planete.cs" />
      <Compile Include="Assets\src\Systeme.cs" />
-     <Compile Include="Assets\src\SystemeControler.cs" />
+     <Compile Include="Assets\src\SystemeController.cs" />
+     <Compile Include="Assets\src\XML.cs" />
+     <None Include="Assets\src\XML\Donnees\solaire.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,20 @@
+<!ELEMENT systeme (general, etoile, planete*)>
+	<!ELEMENT general (nom, URLimage, description)>
+		<!ELEMENT nom (#PCDATA)>
+		<!ELEMENT URLimage (#PCDATA)>
+		<!ELEMENT description (#PCDATA)>
+	<!ELEMENT etoile (nom, masse, taille, texture, categorie, temperature, luminosite, description)>
+		<!ELEMENT masse (#PCDATA)>
+		<!ELEMENT taille (#PCDATA)>	
+		<!ELEMENT texture (#PCDATA)>
+		<!ELEMENT categorie (#PCDATA)>
+		<!ELEMENT temperature (#PCDATA)>
+		<!ELEMENT luminosite (#PCDATA)>		
+	<!ELEMENT planete (nom, masse, taille, positionX, positionY, positionZ, vitesseIniX, vitesseIniY, vitesseIniZ, texture, categorie, composition, description)>
+		<!ELEMENT positionX (#PCDATA)>
+		<!ELEMENT positionY (#PCDATA)>
+		<!ELEMENT positionZ (#PCDATA)>
+		<!ELEMENT vitesseIniX (#PCDATA)>
+		<!ELEMENT vitesseIniY (#PCDATA)>	
+		<!ELEMENT vitesseIniZ (#PCDATA)>
+		<!ELEMENT composition (#PCDATA)>		

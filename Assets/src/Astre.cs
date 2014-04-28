@@ -7,64 +7,50 @@ using System.Collections;
 
 public class Astre
 {
-	protected string nom;
+	protected string name;
 	protected Systeme systeme;
-	protected Vector3 position;
+	protected Vector3 positionInit;
 	protected Vector3 vitesseInit;
-	protected float masse;
-	protected float taille;
-	protected GameObject gameobject; // gameObject qui représente la planète (une sphère) dans la vue 3d
-	protected GameObject astreEchelle;
+	protected float masseInit;
+	protected float tailleInit;
+	protected GameObject astreReel;
 	protected AstreController ac;
-
+	protected GameObject astreVu;
 
 	public Astre(string n, Systeme s, Vector3 pos, Vector3 v, float m, float t)
 	{
-		nom = n;
-		position = pos;
+		name = n;
+		positionInit = pos;
 		vitesseInit = v;
-		masse = m;
-		taille = t;
+		masseInit = m;
+		tailleInit = t;
 		systeme = s;
 		systeme.addAstre (this); // Lorsqu'on créé un Astre on l'ajoute à son système
-		initVueAstre ();
-		initGameObject ();
-	}
-	
-	public void initGameObject() // j'aimerais que cette fonction soit dans un script AstreControler mais j'ai rencontré des probèmes ...
-	{
-		gameobject = GameObject.CreatePrimitive (PrimitiveType.Sphere);
-		gameobject.transform.position = position;
-		gameobject.transform.localScale = new Vector3(taille,taille,taille);
-		gameobject.AddComponent("Rigidbody");
-		gameobject.rigidbody.useGravity = false;
-		gameobject.rigidbody.velocity = vitesseInit;
-		gameobject.rigidbody.mass = masse;
-		gameobject.rigidbody.name = nom;
-		gameobject.renderer.enabled = false;
-	}
-
-	public void initVueAstre()
-	{
-		astreEchelle = GameObject.CreatePrimitive (PrimitiveType.Sphere);
-		astreEchelle.collider.enabled = false;
-		astreEchelle.AddComponent ("AstreController"); 
-		ac = (AstreController)astreEchelle.GetComponent ("AstreController");
-		ac.astre = this;
+		setAstreReel(GameObject.CreatePrimitive (PrimitiveType.Sphere));
+		astreReel.AddComponent<AstreController>();
+		ac=astreReel.GetComponent<AstreController> (); 
+		ac.setAstre (this);
+		astreVu = ac.getAstreVu ();
 	}
 	
 	public string getNom(){
 		return nom;
 	}
 
+<<<<<<< HEAD
 	public void setNom(string p){
 		nom = p;
+=======
+	public void setName(string p){
+		name = p;
+>>>>>>> cfe21fed29526a129cc85081ec64b3940c26cbdc
 	}	
 
 	public Systeme getSysteme(){
 		return systeme;
 	}
 
+<<<<<<< HEAD
 	public void setSysteme(Systeme p){
 		systeme = p;
 	}
@@ -74,11 +60,16 @@ public class Astre
 	}
 	public void setPosition(Vector3 p){
 		position = p;
+=======
+	public Vector3 getPositionInit(){
+		return positionInit;
+>>>>>>> cfe21fed29526a129cc85081ec64b3940c26cbdc
 	}
 
 	public Vector3 getVitesseInit(){
 		return vitesseInit;
 	}
+<<<<<<< HEAD
 	public void setVitesseInit(Vector3 p){
 		vitesseInit = p;
 	}
@@ -108,6 +99,22 @@ public class Astre
 	public void setAstreEchelle(GameObject p){
 		astreEchelle = p;
 	}
+=======
+	public float getMasseInit(){
+		return masseInit;
+	}
+	public float getTailleInit(){
+		return tailleInit;
+	}
+	public GameObject getAstreReel(){
+		return astreReel;
+	}
+
+	public void setAstreReel(GameObject a){
+		astreReel = a;
+	}
+
+>>>>>>> cfe21fed29526a129cc85081ec64b3940c26cbdc
 	public AstreController getAc(){
 		return ac;
 	}
