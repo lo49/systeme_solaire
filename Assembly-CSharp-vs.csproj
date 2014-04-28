@@ -50,11 +50,12 @@
      <Compile Include="Assets\src\AstreController.cs" />
      <Compile Include="Assets\src\CameraController.cs" />
      <Compile Include="Assets\src\Etoile.cs" />
+     <Compile Include="Assets\src\GetAstre.cs" />
      <Compile Include="Assets\src\Main.cs" />
      <Compile Include="Assets\src\Planete.cs" />
      <Compile Include="Assets\src\Systeme.cs" />
-     <Compile Include="Assets\src\SystemeControler.cs" />
-     <Compile Include="Assets\src\XML\XML.cs" />
+     <Compile Include="Assets\src\SystemeController.cs" />
+     <Compile Include="Assets\src\XML.cs" />
      <None Include="Assets\src\XML\Donnees\solaire.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

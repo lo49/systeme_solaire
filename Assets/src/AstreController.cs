@@ -3,36 +3,62 @@ using System.Collections;
 
 public class AstreController : MonoBehaviour {
 
-	public Astre astre;
-	private float taille;
-	private float multiplyTaille=1;
-	private float multiplyDistance=1;
+	private Astre astre;
+	private float tailleReelle;
+	private float tailleEchelle;
+	private float multiplyTaille=7f;
+	private float multiplyDistance=1f;
 	private bool racTaillActive=false;
 	private bool racDistActive=false;
-	private float tailleTmp;
-	private GameObject astreEchelle;
-	// Use this for initialization
+	private GameObject astreReel;
+	private GameObject astreVu;
+	private GameObject cameraOri;
+
+	void Awake (){
+		astreReel = gameObject;
+		Destroy (astreReel.GetComponent<Renderer>());
+		Destroy (astreReel.GetComponent<MeshFilter>());
+		Destroy (astreReel.GetComponent<SphereCollider>());
+		astreReel.AddComponent<Rigidbody>();
+		astreReel.rigidbody.useGravity = false;
+		astreReel.renderer.enabled = false;
+
+		astreVu = GameObject.CreatePrimitive (PrimitiveType.Sphere);
+		astreVu.AddComponent<GetAstre>();
+	}
 
 	void Start () {
-		astreEchelle = astre.getAstreEchelle ();
-		Destroy (astreEchelle.GetComponent ("SphereCollider"));
-		this.name = astre.getName() + "Vue";
-		taille = astre.getTaille()*multiplyTaille;
-		astreEchelle.transform.localScale = new Vector3(taille,taille,taille);
+		tailleReelle = astre.getTailleInit();
+		astreReel.transform.position = astre.getPositionInit();
+		astreReel.transform.localScale = Vector3.one * astre.getTailleInit();
+		astreReel.rigidbody.velocity = astre.getVitesseInit();
+		astreReel.rigidbody.mass = astre.getMasseInit();
+		astreReel.rigidbody.name = astre.getName();
+		
+		astreVu.GetComponent<GetAstre> ().setAstre (astre);
+		astreVu.name = astre.getName() + "Vue";
+		tailleEchelle = tailleReelle*multiplyTaille;
+		astreVu.transform.localScale = Vector3.one * tailleEchelle;
+		gererEchelle(1);
+		gererEchelle(4); // Echelle initiale à la racine
 	}
 
-	void LateUpdate() {
-		Vector3 posReelle = astre.getPosition();
+	public void calculPosEchelle() {
+		Vector3 posTmp = astreReel.transform.position;
 		if (racDistActive) {
-			astreEchelle.transform.position = Mathf.Pow (posReelle.sqrMagnitude, 0.20f) * posReelle.normalized * multiplyDistance;
+						posTmp = Mathf.Pow (posTmp.sqrMagnitude, 0.20f) * posTmp.normalized * multiplyDistance;
 				} else {
-						astreEchelle.transform.position = posReelle * multiplyDistance;
-				}
+						posTmp = posTmp * multiplyDistance;
+		}
+		astreVu.transform.position=posTmp;
+		if (cameraOri!=null){
+			cameraOri.transform.position = posTmp;
+		}
 	}
 
-	public void gererEchelle(int bouton)
+	public void gererEchelle(int action)
 	{
-		if (bouton == 1)
+		if (action == 1)
 		{
 			if(racDistActive)
 			{
@@ -44,19 +70,23 @@ public class AstreController : MonoBehaviour {
 			}
 			racDistActive=(!racDistActive);
 		}
-		if (bouton == 2)
+		if (action == 2)
 		{
 			multiplyDistance=multiplyDistance/1.15f;
+			if (multiplyDistance <= 1f)
+				multiplyDistance = 1f;
 		}
-		if (bouton == 3)
+		if (action == 3)
 		{
 			multiplyDistance=multiplyDistance*1.15f;
+			if (multiplyDistance >= 90f)
+				multiplyDistance = 90f;
 		}
-		if (bouton == 4)
+		if (action == 4)
 		{
 			if (racTaillActive)
 			{
-				multiplyTaille=1f;
+				multiplyTaille=7f;
 			}
 			else
 			{
@@ -65,26 +95,69 @@ public class AstreController : MonoBehaviour {
 			racTaillActive = (!racTaillActive);
 			calculTaille();
 		}
-		if (bouton == 5)
+		if (action == 5)
 		{
 			multiplyTaille=multiplyTaille*1.15f;
+			if (multiplyTaille>90f)
+				multiplyTaille=90f;
 			calculTaille();
 		}
-		if (bouton == 6)
+		if (action == 6)
 		{
 			multiplyTaille=multiplyTaille/1.15f;
+			if (multiplyTaille<1f)
+				multiplyTaille=1f;
 			calculTaille();
 		}
+	}
+
+	public void changeRacActive()
+	{
+		racTaillActive = (!racTaillActive);
 	}
 
 	public void calculTaille()
 	{
 		if (racTaillActive) {
-						taille = Mathf.Sqrt (astre.getTaille()) * multiplyTaille;
+						tailleEchelle = Mathf.Sqrt (tailleReelle) * multiplyTaille;
 				} else {
-						taille = astre.getTaille() * multiplyTaille;
+						tailleEchelle = tailleReelle * multiplyTaille;
 				}
-		astreEchelle.transform.localScale = new Vector3(taille,taille,taille);
+		astreVu.transform.localScale = Vector3.one * tailleEchelle;
 	}
 
+	public void ajoutForce(Vector3 force)
+	{
+		astreReel.rigidbody.AddForce (force);
+	}
+
+	//Gets Sets
+	public GameObject getAstreVu()
+	{
+		return astreVu;
+	}
+
+	public float getTailleEchelle()
+	{
+		return tailleEchelle;
+	}
+
+	public float getTailleReelle ()
+	{
+		return tailleReelle;
+	}
+
+	public void setTailleReelle (float t)
+	{
+		tailleReelle = t;
+	}
+	public void setAstre(Astre a)
+	{
+		astre = a;
+	}
+	public void setCameraOri(GameObject cameraOrigine)
+	{
+		cameraOri = cameraOrigine;
+
+	}
 }

@@ -1,16 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="k:\Users\NicoClean\Documents\GitHub\systeme_solaire\Assets\src\XML\XML.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\src\SystemeController.cs">
     <Files>
-      <File FileName="Assets\src\Astre.cs" Line="116" Column="45" />
-      <File FileName="Assets\src\AstreController.cs" Line="87" Column="3" />
-      <File FileName="Assets\src\CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets\src\Etoile.cs" Line="6" Column="75" />
-      <File FileName="Assets\src\Main.cs" Line="28" Column="23" />
-      <File FileName="Assets\src\Planete.cs" Line="10" Column="1" />
-      <File FileName="Assets\src\SystemeControler.cs" Line="45" Column="145" />
-      <File FileName="Assets\src\Systeme.cs" Line="33" Column="22" />
-      <File FileName="k:\Users\NicoClean\Documents\GitHub\systeme_solaire\Assets\src\XML\XML.cs" Line="50" Column="4" />
+      <File FileName="Assets\src\SystemeController.cs" Line="27" Column="178" />
+      <File FileName="Assets\src\AstreController.cs" Line="43" Column="51" />
+      <File FileName="Assets\src\Astre.cs" Line="1" Column="1" />
+      <File FileName="Assets\src\CameraController.cs" Line="48" Column="37" />
+      <File FileName="Assets\src\Etoile.cs" Line="9" Column="34" />
+      <File FileName="Assets\src\Main.cs" Line="1" Column="1" />
+      <File FileName="Assets\src\Planete.cs" Line="1" Column="1" />
+      <File FileName="Assets\src\Systeme.cs" Line="29" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
