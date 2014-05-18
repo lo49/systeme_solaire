@@ -7,105 +7,128 @@ using System.Collections;
 
 public class Astre
 {
-	protected string name;
+	protected string nom;
+	protected string texture;
+	protected string categorie;
+	protected string description;
 	protected Systeme systeme;
 	protected Vector3 positionInit;
 	protected Vector3 vitesseInit;
 	protected float masseInit;
+	protected float masse;
 	protected float tailleInit;
+	protected float taille;
 	protected GameObject astreReel;
 	protected AstreController ac;
 	protected GameObject astreVu;
+	protected AstreVuController avc;
 
-	public Astre(string n, Systeme s, Vector3 pos, Vector3 v, float m, float t)
+	public Astre(string n, Systeme s, Vector3 pos, Vector3 v, float m, float t, string tex)
 	{
-		name = n;
+		nom = n;
 		positionInit = pos;
 		vitesseInit = v;
 		masseInit = m;
+		masse = masseInit;
 		tailleInit = t;
+		taille = tailleInit;
+		texture = tex;
 		systeme = s;
 		systeme.addAstre (this); // Lorsqu'on créé un Astre on l'ajoute à son système
+
 		setAstreReel(GameObject.CreatePrimitive (PrimitiveType.Sphere));
 		astreReel.AddComponent<AstreController>();
-		ac=astreReel.GetComponent<AstreController> (); 
+		ac=astreReel.GetComponent<AstreController> ();
 		ac.setAstre (this);
-		astreVu = ac.getAstreVu ();
+		ac.setNom (nom);
+		ac.setMasse (masse);
+		ac.setPosition (positionInit);
+		ac.setVitesse (vitesseInit);
+		ac.setTaille (taille);
+		astreReel = ac.getAstreReel();
+
+		setAstreVu(GameObject.CreatePrimitive (PrimitiveType.Sphere));
+		astreVu.AddComponent<AstreVuController>();
+		avc=astreVu.GetComponent<AstreVuController> (); 
+		avc.setAstre (this);
+		astreVu = avc.getAstreVu ();
+		Debug.Log(texture);
+		astreVu.renderer.material = Resources.Load<Material>(texture);
 	}
-	
-	public string getNom(){
+
+	public Vector3 getPositionVu(){
+		return avc.getPosAstreVu (getPosition());
+	}
+
+	public float getTailleVu(){
+		avc.calculTaille ();
+		return avc.getTaille ();
+	}
+
+	// Accesseurs Mutateurs
+	public string getNom()
+	{
 		return nom;
 	}
-
-<<<<<<< HEAD
-	public void setNom(string p){
+	public void setNom(string p)
+	{
 		nom = p;
-=======
-	public void setName(string p){
-		name = p;
->>>>>>> cfe21fed29526a129cc85081ec64b3940c26cbdc
 	}	
-
+	public string getTexture()
+	{
+		return texture;
+	}
+	public void setTexture(string t)
+	{
+		texture = t;
+	}
+	public string getDescription()
+	{
+		return description;
+	}
+	public void setDescription(string d)
+	{
+		description = d;
+	}
+	public string getCategorie()
+	{
+		return categorie;
+	}
+	public void setCategorie(string c)
+	{
+		categorie = c;
+	}
 	public Systeme getSysteme(){
 		return systeme;
 	}
 
-<<<<<<< HEAD
-	public void setSysteme(Systeme p){
-		systeme = p;
-	}
-
-	public Vector3 getPosition(){
-		return position;
-	}
-	public void setPosition(Vector3 p){
-		position = p;
-=======
 	public Vector3 getPositionInit(){
 		return positionInit;
->>>>>>> cfe21fed29526a129cc85081ec64b3940c26cbdc
+	}
+	
+	public Vector3 getPosition(){
+		return astreReel.transform.position;
 	}
 
 	public Vector3 getVitesseInit(){
 		return vitesseInit;
 	}
-<<<<<<< HEAD
-	public void setVitesseInit(Vector3 p){
-		vitesseInit = p;
-	}
-	public float getMasse(){
-		return masse;
-	}
-	public void setMasse(float p){
-		masse = p;
-	}
 
-	public float getTaille(){
-		return taille;
-	}
-	public void setTaille(float p){
-		taille = p;
-	}
-
-	public GameObject getGameObject(){
-		return gameobject; 
-	}
-	public void setGameObject(GameObject p){
-		gameobject = p;
-	}
-	public GameObject getAstreEchelle(){
-		return astreEchelle;
-	}
-	public void setAstreEchelle(GameObject p){
-		astreEchelle = p;
-	}
-=======
 	public float getMasseInit(){
 		return masseInit;
 	}
+
+	public float getMasse(){
+		return masse;
+	}
+
 	public float getTailleInit(){
 		return tailleInit;
 	}
+	public float getTaille(){
+		return taille;
+	}
+
 	public GameObject getAstreReel(){
 		return astreReel;
 	}
@@ -114,7 +137,6 @@ public class Astre
 		astreReel = a;
 	}
 
->>>>>>> cfe21fed29526a129cc85081ec64b3940c26cbdc
 	public AstreController getAc(){
 		return ac;
 	}
@@ -122,6 +144,17 @@ public class Astre
 		ac = p;
 	}
 
+	public void setAstreVu(GameObject a){
+		astreVu = a;
+	}
+
+	public AstreVuController getAvc(){
+		return avc;
+	}
+
+	public void setAvc(AstreVuController p){
+		avc = p;
+	}
 
 }
 		

@@ -4,7 +4,7 @@
 /// créé par jonathan le 19/04
 /// modifié par ...
 /// </summary>
-/*
+
 using UnityEngine;
 using System;
 using System.Collections;
@@ -47,13 +47,12 @@ public static class XML
 	 * List <string> getFiles();
 	 * void recupererSysteme(string fichier);
 	 * bool sauverSysteme(Systeme s);
-	/*
-
+	*/
 
 	// Retourne une valeur (string) de rang 2 (c-a-d <systeme><rang1><rang2>x)
 	public static string getValeurRang2(string fichier, string rang1, string rang2)
 	{
-		string chemin = "Assets/Donnees/" + fichier;
+		string chemin = "Assets/src/Donnees/" + fichier;
 		System.Xml.XmlTextReader reader = new System.Xml.XmlTextReader(chemin);
 		string valeur = "";
 		bool rang1Ouvert = false;
@@ -83,7 +82,7 @@ public static class XML
 	// Retourne une valeur (string) d'une planete (c-a-d <systeme><planete><rang2>x)
 	public static string getValeurPlanete(string fichier, string planete, string rang2)
 	{
-		string chemin = "Assets/Donnees/" + fichier;
+		string chemin = "Assets/src/Donnees/" + fichier;
 		System.Xml.XmlTextReader reader = new System.Xml.XmlTextReader(chemin);
 		string valeur = "";
 		bool planeteOuvert = false;
@@ -127,7 +126,7 @@ public static class XML
 	{
 		// attention, ne renvoie pas l'étoile, pour cela il faut utiliser getListAstres(string)
 		List<string> planetes = new List<string>();
-		string chemin = "Assets/Donnees/" + fichier;
+		string chemin = "Assets/src/Donnees/" + fichier;
 		System.Xml.XmlTextReader reader = new System.Xml.XmlTextReader(chemin);
 		bool planeteOuvert = false;
 		bool nomOuvert = false;
@@ -333,12 +332,12 @@ public static class XML
 	}
 
 
-	//Retourne la liste de tous les fichiers XML contenus dans Assets/Donnees/
+	//Retourne la liste de tous les fichiers XML contenus dans Assets/src/Donnees/
 	public static List<string> getFiles()
 	{
 		string[] files;
 		List<string> filesXML = new List<string>();
-		files = Directory.GetFiles("Assets/Donnees/");
+		files = Directory.GetFiles("Assets/src/Donnees/");
 		foreach(string f in files)
 		{
 			if(Path.GetExtension(f)==".xml")
@@ -351,14 +350,15 @@ public static class XML
 
 
 	// créé le systeme décrit dans le fichier XML
-	public static void recupererSysteme(string fichier)
+	public static Systeme recupererSysteme(string fichier)
 	{
-		Systeme s1 = new Systeme(getNomSysteme(fichier));
-		Astre etoile = new Astre (getNomEtoile (fichier), s1, new Vector3 (0f, 0f, 0f), new Vector3 (0f, 0f, 0f), getMasseEtoile (fichier), getTailleEtoile (fichier));
+		Systeme s1 = new Systeme(getNomSysteme(fichier),getImageSysteme(fichier),getDescriptionSysteme(fichier));
+		Astre etoile = new Etoile (getNomEtoile (fichier), s1, new Vector3 (0f, 0f, 0f), new Vector3 (0f, 0f, 0f), getMasseEtoile (fichier), getTailleEtoile (fichier),getTextureEtoile(fichier));
 		foreach(string planete in getListPlanetes(fichier))
 		{
-			Astre p = new Astre(getNom(fichier, planete),s1,new Vector3(getPosX(fichier,planete),getPosY(fichier,planete),getPosZ(fichier,planete)), new Vector3(getVitX(fichier,planete),getVitY(fichier,planete),getVitZ(fichier,planete)),getMasse(fichier,planete),getTaille(fichier,planete));
+			Planete p = new Planete(getNom(fichier, planete),s1,new Vector3(getPosX(fichier,planete),getPosY(fichier,planete),getPosZ(fichier,planete)), new Vector3(getVitX(fichier,planete),getVitY(fichier,planete),getVitZ(fichier,planete)),getMasse(fichier,planete),getTaille(fichier,planete),getTexture(fichier,planete));
 		}
+		return s1;
 	}            
 
 
@@ -367,7 +367,7 @@ public static class XML
 	{
 		// CREATION DU FICHIER XML
 		bool OK = false;
-		string fichier = "Assets/Donnees/" + file + ".xml";
+		string fichier = "Assets/src/Donnees/" + file + ".xml";
 		s.setFichierXML (fichier); // le systeme connait son fichier .xml
 		bool cond = getFiles ().Contains (fichier);
 		// si un fichier du meme nom n'éxiste pas déjà
@@ -389,41 +389,41 @@ public static class XML
 
 				myXmlTextWriter.WriteComment("caractéristiques générale du système");
 				myXmlTextWriter.WriteStartElement("general");
-					myXmlTextWriter.WriteElementString("nom", null,"Solaire"); //nom:s.getNom()
-					myXmlTextWriter.WriteElementString("URLimage", null,"url/de/limage"); //URLimage:s.getURLimage()
-					myXmlTextWriter.WriteElementString("description", null,"bla bla bla");//description:s.getDescription()
+					myXmlTextWriter.WriteElementString("nom", null,s.getNom());
+					myXmlTextWriter.WriteElementString("URLimage", null,s.getURLimage());
+					myXmlTextWriter.WriteElementString("description", null,s.getDescription());
 				myXmlTextWriter.WriteEndElement();
 
 				myXmlTextWriter.WriteStartElement("etoile");
-					myXmlTextWriter.WriteElementString("nom", null,"Soleil"); //nom:s.getEtoile().getNom()
-					myXmlTextWriter.WriteElementString("masse", null,"15"); //masse:s.getEtoile().getMasse()
-					myXmlTextWriter.WriteElementString("taille", null,"12");//taille:s.getEtoile().getTaille()
-					myXmlTextWriter.WriteElementString("texture", null,"soleil.jpg");//texture:s.getEtoile().getTexture()
-					myXmlTextWriter.WriteElementString("categorie", null,"naine jaune");//categorie:s.getEtoile().getCategorie()
-					myXmlTextWriter.WriteElementString("temperature", null,"12000");//temperature:s.getEtoile().getTemperature()
-					myXmlTextWriter.WriteElementString("luminosite", null,"40");//luminosite:s.getEtoile().getLuminosite()
-					myXmlTextWriter.WriteElementString("description", null,"bla bla bla");//description:s.getEtoile().getDescription()
+					myXmlTextWriter.WriteElementString("nom", null,s.getEtoile().getNom()); 
+					myXmlTextWriter.WriteElementString("masse", null,Convert.ToString(s.getEtoile().getMasseInit()));
+					myXmlTextWriter.WriteElementString("taille", null,Convert.ToString(s.getEtoile().getTailleInit()));
+					myXmlTextWriter.WriteElementString("texture", null,s.getEtoile().getTexture());
+					myXmlTextWriter.WriteElementString("categorie", null,s.getEtoile().getCategorie());
+					myXmlTextWriter.WriteElementString("temperature", null,Convert.ToString(s.getEtoile().getTemperature()));
+					myXmlTextWriter.WriteElementString("luminosite", null,Convert.ToString(s.getEtoile().getLuminosite()));
+					myXmlTextWriter.WriteElementString("description", null,s.getEtoile().getDescription());
 				myXmlTextWriter.WriteEndElement();
 
-			// a faire : les planetes
 
-			foreach(Astre planete in s.getListPlanetes ())
+			foreach(Planete planete in s.getPlanetes ())
 			{
+				Debug.Log("FOREACH OUVERT");
 				myXmlTextWriter.WriteStartElement("planete");
-					myXmlTextWriter.WriteElementString("nom", null,"planete"); //nom:planete.getNom()
-					myXmlTextWriter.WriteElementString("masse", null,"15"); //masse:planete.getMasse()
-					myXmlTextWriter.WriteElementString("taille", null,"12");//taille:planete.getTaille()
+					myXmlTextWriter.WriteElementString("nom", null,planete.getNom()); 
+					myXmlTextWriter.WriteElementString("masse", null,Convert.ToString(planete.getMasseInit()));
+					myXmlTextWriter.WriteElementString("taille", null,Convert.ToString(planete.getTailleInit()));
 					// positions et vitesses INITIALES!
-					myXmlTextWriter.WriteElementString("positionX", null,"12");//positionx:planete.getPosIX()
-					myXmlTextWriter.WriteElementString("positionY", null,"12");//positiony:planete.getPosIY()
-					myXmlTextWriter.WriteElementString("positionZ", null,"12");//positionz:planete.getPosIZ()
-					myXmlTextWriter.WriteElementString("vitesseIniX", null,"12");//vitessex:planete.getVitIX()
-					myXmlTextWriter.WriteElementString("vitesseIniY", null,"12");//vitessey:planete.getVitIY()
-					myXmlTextWriter.WriteElementString("vitesseIniZ", null,"12");//vitessez:planete.getVitIZ()
-					myXmlTextWriter.WriteElementString("texture", null,"planete.jpg");//texture:planete.getTexture()
-					myXmlTextWriter.WriteElementString("categorie", null,"tellurique");//categorie:planete.getCategorie()
-					myXmlTextWriter.WriteElementString("composition", null,"");//composition:planete.getComposition()
-					myXmlTextWriter.WriteElementString("description", null,"bla bla bla");//description:planete.getDescription()
+					myXmlTextWriter.WriteElementString("positionX", null,Convert.ToString(planete.getPositionInit().x));
+					myXmlTextWriter.WriteElementString("positionY", null,Convert.ToString(planete.getPositionInit().y));
+					myXmlTextWriter.WriteElementString("positionZ", null,Convert.ToString(planete.getPositionInit().z));
+					myXmlTextWriter.WriteElementString("vitesseIniX", null,Convert.ToString(planete.getVitesseInit().x));
+					myXmlTextWriter.WriteElementString("vitesseIniY", null,Convert.ToString(planete.getVitesseInit().y));
+					myXmlTextWriter.WriteElementString("vitesseIniZ", null,Convert.ToString(planete.getVitesseInit().z));
+					myXmlTextWriter.WriteElementString("texture", null,planete.getTexture());
+					myXmlTextWriter.WriteElementString("categorie", null,planete.getCategorie());
+					myXmlTextWriter.WriteElementString("composition", null,planete.getComposition());
+					myXmlTextWriter.WriteElementString("description", null,planete.getDescription());
 				myXmlTextWriter.WriteEndElement();
 			}
 				
@@ -436,7 +436,7 @@ public static class XML
 		}
 		return OK;
 	}
-	
+
 	
 	// enregistrer le systeme
 	public static bool sauverSysteme(Systeme s)
@@ -448,4 +448,4 @@ public static class XML
 	}
 
 
-}*/
+}

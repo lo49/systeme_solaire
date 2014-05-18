@@ -1,0 +1,169 @@
+﻿<?xml version = "1.0" encoding="UTF-8" standalone="no" ?>
+
+<!DOCTYPE systeme SYSTEM "systeme.dtd">
+
+<systeme>
+
+	<!-- caractéristiques générale du système !-->
+	<general>
+		<nom>Solaire</nom>
+		<URLimage>image_systeme</URLimage>
+		<description>description_systeme</description>
+	</general>
+
+	<etoile>
+		<nom>Soleil</nom>
+		<masse>1989100</masse>
+		<taille>6.96342</taille>
+		<texture>SoleilMaterial</texture>
+		<categorie>naine jaune</categorie>
+		<temperature>0</temperature>
+		<luminosite>0</luminosite>
+		<description>Le Soleil est une étoile naine</description>	
+	</etoile>
+	
+	<planete>
+		<nom>Mercure</nom>
+		<masse>0.3302</masse>
+		<taille>0.024397</taille>
+		<positionX>-210.5027</positionX>
+		<positionY>-34.92726</positionY>
+		<positionZ>-664.0743</positionZ>
+		<vitesseIniX>36.653516</vitesseIniX>
+		<vitesseIniY>-4.368085</vitesseIniY>
+		<vitesseIniZ>-12.28817</vitesseIniZ>
+		<texture>MercureMaterial</texture>
+		<categorie>tellurique</categorie>
+		<composition>composition_mercure</composition>
+		<description>description_mercure</description>
+	</planete>
+	
+	<planete>
+		<nom>Venus</nom>
+		<masse>4.8685</masse>
+		<taille>0.060518</taille>
+		<positionX>-1075.055</positionX>
+		<positionY>61.59186</positionY>
+		<positionZ>-33.68777</positionZ>
+		<vitesseIniX>0.8898920</vitesseIniX>
+		<vitesseIniY>-0.5319014</vitesseIniY>
+		<vitesseIniZ>-35.15918</vitesseIniZ>
+		<texture>VenusMaterial</texture>
+		<categorie>tellurique</categorie>
+		<composition>composition_venus</composition>
+		<description>description_venus</description>		
+	</planete>
+	
+	<planete>
+		<nom>Terre</nom>
+		<masse>5.9736</masse>
+		<taille>0.06371</taille>
+		<positionX>-252.1284</positionX>
+		<positionY>-0.006162688</positionY>
+		<positionZ>1449.276</positionZ>
+		<vitesseIniX>-29.83977</vitesseIniX>
+		<vitesseIniY>0.00006182963</vitesseIniY>
+		<vitesseIniZ>-5.208023</vitesseIniZ>
+		<texture>TerreMaterial</texture>
+		<categorie>tellurique</categorie>
+		<composition>composition_terre</composition>
+		<description>description_terre</description>		
+	</planete>
+	
+	<planete>
+		<nom>Lune</nom>
+		<masse>0.073477</masse>
+		<taille>0.017367</taille>
+		<positionX>-255.30458</positionX>
+		<positionY>0.3593945</positionY>
+		<positionZ>1446.8565</positionZ>
+		<vitesseIniX>-29.27885</vitesseIniX>
+		<vitesseIniY>-0.0015922926</vitesseIniY>
+		<vitesseIniZ>-6.0078587</vitesseIniZ>
+		<texture>LuneMaterial</texture>
+		<categorie>tellurique (satellite)</categorie>
+		<composition>none</composition>
+		<description>none</description>
+	</planete>
+	
+	<planete>
+		<nom>Mars</nom>
+		<masse>0.64185</masse>
+		<taille>0.033895</taille>
+		<positionX>2079.951</positionX>
+		<positionY>-51.78748</positionY>
+		<positionZ>-31.413225</positionZ>
+		<vitesseIniX>1.294807</vitesseIniX>
+		<vitesseIniY>0.5190147</vitesseIniY>
+		<vitesseIniZ>26.29442</vitesseIniZ>
+		<texture>MarsMaterial</texture>
+		<categorie>tellurique</categorie>
+		<composition>none</composition>
+		<description>none</description>		
+	</planete>
+	
+	<planete>
+		<nom>Jupiter</nom>
+		<masse>1898.6</masse>
+		<taille>0.69911</taille>
+		<positionX>5989.086</positionX>
+		<positionY>-152.3269</positionY>
+		<positionZ>4391.234</positionZ>
+		<vitesseIniX>-7.9014697</vitesseIniX>
+		<vitesseIniY>0.1306501</vitesseIniY>
+		<vitesseIniZ>11.16227</vitesseIniZ>
+		<texture>JupiterMaterial</texture>
+		<categorie>gazeuse</categorie>
+		<composition>none</composition>
+		<description>none</description>		
+	</planete>
+	
+	<planete>
+		<nom>Saturne</nom>
+		<masse>568.46</masse>
+		<taille>0.58232</taille>
+		<positionX>9587.0567</positionX>
+		<positionY>-552.2077</positionY>
+		<positionZ>9825.658</positionZ>
+		<vitesseIniX>-7.429892</vitesseIniX>
+		<vitesseIniY>0.1781269</vitesseIniY>
+		<vitesseIniZ>6.738101</vitesseIniZ>
+		<texture>SaturneMaterial</texture>
+		<categorie>gazeuse</categorie>
+		<composition>none</composition>
+		<description>none</description>		
+	</planete>
+	
+	<planete>
+		<nom>Uranus</nom>
+		<masse>86.810</masse>
+		<taille>0.25361</taille>
+		<positionX>21587.76</positionX>
+		<positionY>-356.2269</positionY>
+		<positionZ>-20548.24</positionZ>
+		<vitesseIniX>4.6374966</vitesseIniX>
+		<vitesseIniY>-0.042899693</vitesseIniY>
+		<vitesseIniZ>4.6272206</vitesseIniZ>
+		<texture>UranusMaterial</texture>
+		<categorie>géante glacée</categorie>
+		<composition>none</composition>
+		<description>none</description>
+	</planete>
+	
+	<planete>
+		<nom>Neptune</nom>
+		<masse>102.43</masse>
+		<taille>0.24622</taille>
+		<positionX>25148.559</positionX>
+		<positionY>190.404</positionY>
+		<positionZ>-37388.49</positionZ>
+		<vitesseIniX>4.466067</vitesseIniX>
+		<vitesseIniY>-0.1660625</vitesseIniY>
+		<vitesseIniZ>3.0763957</vitesseIniZ>
+		<texture>NeptuneMaterial</texture>
+		<categorie>géante glacée</categorie>
+		<composition>none</composition>
+		<description>description_neptune</description>		
+	</planete>
+	
+</systeme>

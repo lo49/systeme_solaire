@@ -39,15 +39,16 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>K:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>K:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\src\Astre.cs" />
      <Compile Include="Assets\src\AstreController.cs" />
+     <Compile Include="Assets\src\AstreVuController.cs" />
      <Compile Include="Assets\src\CameraController.cs" />
      <Compile Include="Assets\src\Etoile.cs" />
      <Compile Include="Assets\src\GetAstre.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\src\SystemeController.cs" />
      <Compile Include="Assets\src\XML.cs" />
      <None Include="Assets\src\XML\Donnees\solaire.xml" />
+     <None Include="Assets\src\Donnees\solaire.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
