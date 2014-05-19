@@ -52,7 +52,33 @@ public class AstreController : MonoBehaviour {
 	public void setTaille(float taille){
 		astreReel.transform.localScale = Vector3.one * taille;
 	}
+	public void OnTriggerEnter(Collider other){
+		if(other.rigidbody != null){
+			// On récupère les données des de planète en collision.
+			// Vitesse : 
+			Vector3 prin_v1 = astreReel.rigidbody.velocity;
+			Vector3 other_v1 = other.rigidbody.velocity;
+			float angle = piAngle(Vector3.Angle(prin_v1,other_v1));
+			if(astre.getMasse() > other.rigidbody.mass){
+				float inertie = (other.rigidbody.mass + astre.getMasse() * (other.rigidbody.velocity - astreReel.rigidbody.velocity).magnitude) / 100f;
+				float pAstreDetruit1 = inertie / astre.getMasse();
+				float pAstreDetruit2 = other.rigidbody.mass;
+			}
+			else if (astre.getMasse() == other.rigidbody.mass){
+				print("Erreur !!! Les masses sont pareil on c'est pas quoi faire !");
+			}
 
+		}
+	}
+	private float piAngle(float angle){
+		if(angle < 180){
+			return angle;
+		}else if (angle <= 360){
+			return Mathf.Abs(angle - 360);
+		}else{
+			return -1;
+		}
+	}
 	public GameObject getAstreReel()
 	{
 		return astreReel;
